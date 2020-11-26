@@ -1,0 +1,1 @@
+JSON beolvasáshoz az összes osztály
