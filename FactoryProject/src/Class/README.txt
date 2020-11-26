@@ -1,0 +1,1 @@
+Belső logikai osztályok
