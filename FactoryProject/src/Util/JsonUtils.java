@@ -14,7 +14,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
-public class JsonUtil {
+public class JsonUtils {
 	
 	
 	public static final Optional<JsonObject> parseObjectFromFile(String file) {
