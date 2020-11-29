@@ -16,6 +16,34 @@ import com.google.gson.stream.JsonReader;
 
 public class JsonUtils {
 	
+	public static final Optional<JsonElement> parseString(String str) {
+		try{
+			return Optional.ofNullable(JsonParser.parseString(str));
+		} catch(Exception e) {
+			return Optional.empty();
+		}
+	}
+	
+	public static final Optional<JsonObject> parseObjectFromString(String str) {
+		Optional<JsonElement> elem=parseString(str);
+		if(!elem.isPresent()) return Optional.empty();
+		return elem.get().isJsonObject() ? Optional.of(elem.get().getAsJsonObject()) : Optional.empty();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static final <T extends JsonElement> Optional<T> parseJsonString(String str,Class<T> clazz) {
+		final Optional<JsonElement> elem=parseString(str);
+		if(!elem.isPresent()) return Optional.empty();
+		try{
+			return Optional.of((T)elem.get());
+		} catch(ClassCastException ex) {
+			return Optional.empty();
+		} catch(Exception e) {
+			return Optional.empty();
+		}
+		
+		
+	}
 	
 	public static final Optional<JsonObject> parseObjectFromFile(String file) {
 		Optional<JsonReader> reader=reader(file);
