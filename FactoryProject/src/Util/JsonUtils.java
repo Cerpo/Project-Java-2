@@ -30,20 +30,32 @@ public class JsonUtils {
 		return elem.get().isJsonObject() ? Optional.of(elem.get().getAsJsonObject()) : Optional.empty();
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static final <T extends JsonElement> Optional<T> parseJsonString(String str,Class<T> clazz) {
 		final Optional<JsonElement> elem=parseString(str);
 		if(!elem.isPresent()) return Optional.empty();
 		try{
-			return Optional.of((T)elem.get());
+			return Optional.of(clazz.cast(elem.get()));
 		} catch(ClassCastException ex) {
 			return Optional.empty();
 		} catch(Exception e) {
 			return Optional.empty();
 		}
-		
-		
 	}
+	
+	public static final <T extends JsonElement> Optional<T> parseJsonFromFile(final File file,Class<T> elementClass) {
+		Optional<JsonReader> reader=reader(file);
+		if(reader.isPresent()) {
+			try{
+				final JsonElement elem=JsonParser.parseReader(reader.get());
+				return Optional.of(elementClass.cast(elem));
+			} catch(Exception e) {
+				return Optional.empty();
+			}
+			
+		}
+		return Optional.empty();
+	}
+	
 	
 	public static final Optional<JsonObject> parseObjectFromFile(String file) {
 		Optional<JsonReader> reader=reader(file);
