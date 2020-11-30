@@ -1,4 +1,3 @@
-/JavaFXApplication5/nbproject/private/
 /FactoryProject/nbproject/private/
 /target/
 .project
@@ -8,8 +7,9 @@
 .settings/org.eclipse.m2e.core.prefs
 .settings/org.eclipse.wst.jsdt.ui.superType.container
 .settings/org.eclipse.wst.jsdt.ui.superType.name
-FactoryProject/build/classes/Main/FactoryProject.class
-FactoryProject/build/classes/Main/FXMLDocumentController.class
-FactoryProject/build/classes/Main/FactoryProject.class
-FactoryProject/build/classes/Main/FactoryProject.class
+FactoryProject/build/
+FactoryProject/dist/
 FactoryProject/src/tests/JsonTest.java
+# IntelliJ
+.idea/
+Project-Java-2.iml
