@@ -19,7 +19,7 @@ public abstract class Station<T extends Component> {
     public ArrayList<String> getPossibleTypes(){
         ArrayList<String> possibleTypeNames = new ArrayList<>();
         possibleTypes.forEach((item) -> {
-            possibleTypeNames.add(item.typeCode);
+            possibleTypeNames.add(item.getTypeCode());
         });
         return possibleTypeNames;
     }

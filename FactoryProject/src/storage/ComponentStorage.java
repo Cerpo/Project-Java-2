@@ -8,6 +8,7 @@ package storage;
 import components.Component;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 /**
  *
@@ -34,5 +35,11 @@ public class ComponentStorage {
             }
         }
         return false;
+    }
+
+    public void removeTypeInCategory(String typeCode, String category){
+        components.removeIf(component ->
+                component.getCategory().equals(category) &&
+                component.getTypeCode().equals(typeCode));
     }
 }
