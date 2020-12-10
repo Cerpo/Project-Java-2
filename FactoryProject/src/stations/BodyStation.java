@@ -3,17 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package stations;
+
+import components.Body;
 
 /**
  *
  * @author Cerpo
  */
-public class Wheel extends Component {
-    
-    
-    @Override
-    void setTypeCode(String typeCode) {
-        this.typeCode = typeCode;
-    }
+public class BodyStation extends Station<Body> {
 }

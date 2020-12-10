@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package stations;
+
+import components.Electronics;
 
 /**
  *
  * @author Cerpo
  */
-abstract class Component {
-    
-    protected String typeCode;
-
-    
-    abstract void setTypeCode(String typeCode);
+public class ElectronicsStation extends Station<Electronics> {
 }

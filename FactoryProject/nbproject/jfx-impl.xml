@@ -1322,8 +1322,8 @@
             <script language="javascript">
                 <![CDATA[
                     var UTF_8 = "UTF-8";
-                    var ATTR_CLASS_PATH = "Class-Path";
-                    var ATTR_CLASS_PATH_FX = "JavaFX-Class-Path";
+                    var ATTR_CLASS_PATH = "storage-Path";
+                    var ATTR_CLASS_PATH_FX = "JavaFX-storage-Path";
                     function endsWith(s, suffix) {
                         var i = s.lastIndexOf(suffix);
                         return  (i != -1) && (i == (s.length - suffix.length));

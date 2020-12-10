@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package storage;
+
+import components.Component;
 
 import java.util.ArrayList;
 
@@ -13,7 +15,7 @@ import java.util.ArrayList;
  */
 public class ComponentStorage {
     
-    private ArrayList<Component> components = new ArrayList<Component>();
+    private ArrayList<Component> components = new ArrayList<>();
     
     
     public void addComponent(Component newComponent){
@@ -24,7 +26,13 @@ public class ComponentStorage {
         return components;
     }
     
-    public boolean hasType(String type, Component classType){
+    public boolean hasTypeInCategory(String typeCode, String category){
+        for (Component component : components) {
+            if (component.getCategory().equals(category) &&
+                component.getTypeCode().equals(typeCode)) {
+                return true;
+            }
+        }
         return false;
     }
 }

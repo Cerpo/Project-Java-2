@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package components;
 
 /**
  *
  * @author Cerpo
  */
-public class Electronics extends Component {
-    
+public class Wheel extends Component {
+    final static String category = "Wheel";
 
     @Override
-    void setTypeCode(String typeCode) {
-        this.typeCode = typeCode;
+    public String getCategory() {
+        return category;
     }
+
+    //TODO: több attribute
 }
