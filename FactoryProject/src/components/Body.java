@@ -18,8 +18,46 @@ public class Body extends Component {
     private byte numberOfSeats;
     private byte numberOfDoors;
     private String carpetMaterial;
+    
+    
 
-    @Override
+    public String getColor() {
+		return color;
+	}
+
+
+
+	public String getColorType() {
+		return colorType;
+	}
+
+
+
+	public byte getBodySize() {
+		return bodySize;
+	}
+
+
+
+	public byte getNumberOfSeats() {
+		return numberOfSeats;
+	}
+
+
+
+	public byte getNumberOfDoors() {
+		return numberOfDoors;
+	}
+
+
+
+	public String getCarpetMaterial() {
+		return carpetMaterial;
+	}
+
+
+
+	@Override
     public String getCategory() {
         return category;
     }

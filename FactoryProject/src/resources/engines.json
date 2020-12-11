@@ -1,0 +1,22 @@
+[{
+	"typeCode": "Ford",
+	"cylinderCapacity": 4800,
+	"horsePower": 300,
+	"isGasoline": false,
+	"numberOfCylinders": 8
+},
+{
+	"typeCode": "Ferrari",
+	"cylinderCapacity": 5600,
+	"horsePower": 400,
+	"isGasoline": false,
+	"numberOfCylinders": 8
+},
+{
+	"typeCode": "Opel",
+	"cylinderCapacity": 1200,
+	"horsePower": 80,
+	"isGasoline": true,
+	"numberOfCylinders": 6
+}
+]

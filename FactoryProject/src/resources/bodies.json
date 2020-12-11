@@ -1,0 +1,28 @@
+[{
+	"typeCode": "Ford",
+	"bodySize": 3,
+	"carpetMaterial": "Leather",
+	"color": "Blue",
+	"colorType": "Matt",
+	"numberOfDoors": 2,
+	"numberOfSeats": 4
+},
+{
+	"typeCode": "Ferrari",
+	"bodySize": 3,
+	"carpetMaterial": "Leather",
+	"color": "Red",
+	"colorType": "Chrome",
+	"numberOfDoors": 2,
+	"numberOfSeats": 2
+},
+{
+	"typeCode": "Opel",
+	"bodySize": 1,
+	"carpetMaterial": "Fur",
+	"color": "Green",
+	"colorType": "Matt",
+	"numberOfDoors": 4,
+	"numberOfSeats": 4
+}
+]

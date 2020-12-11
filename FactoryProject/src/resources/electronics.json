@@ -1,0 +1,19 @@
+[{
+	"typeCode": "Ford",
+	"hasClimate": true,
+	"hasGps": false,
+	"lampType": "led"
+},
+{
+	"typeCode": "Ferrari",
+	"hasClimate": true,
+	"hasGps": true,
+	"lampType": "Xenon"
+},
+{
+	"typeCode": "Opel",
+	"hasClimate": false,
+	"hasGps": false,
+	"lampType": "Halogen"
+}
+]
