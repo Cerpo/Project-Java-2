@@ -11,11 +11,28 @@ package components;
  */
 public class Electronics extends Component {
     final static String category = "Electronics";
+    
+    private boolean hasGps;
+    private boolean hasClimate;
+    private String lampType;
+    
+    public boolean hasGps() {
+		return hasGps;
+	}
+
+	public boolean hasClimate() {
+		return hasClimate;
+	}
+
+	public String getLampType() {
+		return lampType;
+	}
+
+	
 
     @Override
     public String getCategory() {
         return category;
     }
 
-    //TODO: több attribute
 }

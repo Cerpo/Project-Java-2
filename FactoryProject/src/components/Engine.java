@@ -11,11 +11,42 @@ package components;
  */
 public class Engine extends Component {
     final static String category = "Engine";
+    
+    private int cylinderCapacity;
+    private boolean isGasoline;
+    private int horsePower;
+    private int numberOfCylinders;
+    
+    
+    
 
-    @Override
+    public int getCylinderCapacity() {
+		return cylinderCapacity;
+	}
+
+
+
+	public boolean isGasoline() {
+		return isGasoline;
+	}
+
+
+
+	public int getHorsePower() {
+		return horsePower;
+	}
+
+
+
+	public int getNumberOfCylinders() {
+		return numberOfCylinders;
+	}
+
+
+
+	@Override
     public String getCategory() {
         return category;
     }
 
-    //TODO: több attribute
 }

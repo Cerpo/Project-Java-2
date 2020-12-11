@@ -1,0 +1,20 @@
+[{
+	"typeCode":"Continental",
+	"rimSize":30,
+	"tireSize":150,
+	"isSummerTire":true,
+	"weight":60
+},{
+	"typeCode":"Hankook",
+	"rimSize":40,
+	"tireSize":120,
+	"isSummerTire":true,
+	"weight":40
+},
+{
+	"typeCode":"Michelin",
+	"rimSize":37,
+	"tireSize":120,
+	"isSummerTire":false,
+	"weight":80
+}]

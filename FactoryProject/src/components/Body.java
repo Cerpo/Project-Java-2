@@ -11,11 +11,18 @@ package components;
  */
 public class Body extends Component {
     final static String category = "Body";
+    
+    private String color;
+    private String colorType;
+    private byte bodySize;
+    private byte numberOfSeats;
+    private byte numberOfDoors;
+    private String carpetMaterial;
 
     @Override
     public String getCategory() {
         return category;
     }
 
-    //TODO: több attribute
+    
 }

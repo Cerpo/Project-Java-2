@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -20,6 +21,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.stream.JsonReader;
+
+import components.Component;
 
 public class JsonUtils {
 	
@@ -180,6 +183,22 @@ public class JsonUtils {
 			list.add(it.next());
 		}
 		return list;
+	}
+	
+	public static <T extends Component> List<T> getComponents(File file,Class<T> clazz) throws FileNotFoundException {
+		Optional<JsonArray> opt=parseArrayFromFile(file);
+		if(!opt.isPresent()) throw new FileNotFoundException();
+		
+		Gson gson=new Gson();
+		
+		JsonArray arr=opt.get();
+		List<JsonElement> list=JsonUtils.getElements(arr);
+		List<T> ret=list.stream().map((JsonElement elem)->{
+			return gson.fromJson(elem, clazz);
+		}).collect(Collectors.toList());
+		
+		return ret;
+		
 	}
 	
 	public static final <T> T unboxOptional(Optional<T> opt) {
