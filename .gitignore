@@ -1,4 +1,4 @@
-/FactoryProject/nbproject/private/
+/FactoryProject/nbproject/
 /target/
 .project
 .classpath
@@ -7,9 +7,9 @@
 .settings/org.eclipse.m2e.core.prefs
 .settings/org.eclipse.wst.jsdt.ui.superType.container
 .settings/org.eclipse.wst.jsdt.ui.superType.name
-FactoryProject/build/
+/FactoryProject/build/
 FactoryProject/dist/
-FactoryProject/src/tests/JsonTest.java
+FactoryProject/src/tests/
 # IntelliJ
 .idea/
 Project-Java-2.iml
