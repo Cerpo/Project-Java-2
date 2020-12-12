@@ -3,10 +3,19 @@ package stations;
 import components.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Station<T extends Component> {
     private ArrayList<T> possibleTypes;
     private int currentType;
+
+    public Station() {
+        this(new ArrayList<>());
+    }
+
+    public Station(List<T> possibleTypes) {
+        this.possibleTypes = new ArrayList<>(possibleTypes);
+    }
 
     public void addType(T type) {
         possibleTypes.add(type);
