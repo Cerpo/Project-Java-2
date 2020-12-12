@@ -10,12 +10,12 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import Util.JsonUtils;
-import components.Body;
-import components.Electronics;
-import components.Engine;
-import components.Wheel;
+import carbuilder.CarBuilder;
+import carbuilder.CarRequirement;
+import components.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +25,8 @@ import stations.BodyStation;
 import stations.ElectronicsStation;
 import stations.EngineStation;
 import stations.WheelStation;
+import storage.ComponentStorage;
+import threading.WorkerStation;
 
 /**
  *
@@ -32,11 +34,15 @@ import stations.WheelStation;
  */
 public class FactoryProject extends Application {
 
-    private static BodyStation bodyStation;
-    private static ElectronicsStation electronicsStation;
-    private static EngineStation engineStation;
-    private static WheelStation wheelStation;
-    
+    private static WorkerStation<Body> bodyWorker;
+    private static WorkerStation<Electronics> electronicsWorker;
+    private static WorkerStation<Engine> engineWorker;
+    private static WorkerStation<Wheel> wheelWorker;
+
+    private static CarBuilder carBuilder = new CarBuilder();
+
+    private static ComponentStorage storage = new ComponentStorage();
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(new URL("file:src/FXML/FXMLDocument.fxml"));
@@ -53,14 +59,14 @@ public class FactoryProject extends Application {
     public static void main(String[] args) throws InterruptedException {
         setUpStations();
 
-        System.out.println(bodyStation.getPossibleTypes());
-        System.out.println(electronicsStation.getPossibleTypes());
-        System.out.println(engineStation.getPossibleTypes());
-        System.out.println(wheelStation.getPossibleTypes());
-
-        bodyStation.startProducing();
-        Thread.sleep(2000); //simulate user waiting
-        bodyStation.stopProducing();
+        // PÉLDA
+        System.out.println(storage.getComponents());
+        bodyWorker.execute(); // itt indítod el az állomást
+        Thread.sleep(20000); // ez azt szimulálja hogy a felhasználó vár
+        List<Body> results = bodyWorker.cancel(); // itt állítod le az állomást
+        for (Body body : results) // az állomás végtermékeit meg beleteszed az tárolóba
+            storage.addComponent(body);
+        System.out.println(storage.getComponents());
 
         launch(args);
     }
@@ -70,11 +76,14 @@ public class FactoryProject extends Application {
         List<Electronics> possibleElectronics;
         List<Engine> possibleEngines;
         List<Wheel> possibleWheels;
+        List<CarRequirement> requirements;
+
         try {
-            possibleBodies = JsonUtils.getComponents(new File("src/resources/bodies.json"), Body.class); //TODO: different in other ides
+            possibleBodies = JsonUtils.getComponents(new File("src/resources/bodies.json"), Body.class);
             possibleElectronics = JsonUtils.getComponents(new File("src/resources/electronics.json"), Electronics.class);
             possibleEngines = JsonUtils.getComponents(new File("src/resources/engines.json"), Engine.class);
             possibleWheels = JsonUtils.getComponents(new File("src/resources/wheels.json"), Wheel.class);
+            requirements = JsonUtils.getCarRequirements(new File("src/resources/carrequirements.json"));
         } catch (FileNotFoundException e) {
             System.out.println("Could not find json files, with working directory: " +
                     System.getProperty("user.dir"));
@@ -82,9 +91,11 @@ public class FactoryProject extends Application {
             return;
         }
 
-        bodyStation = new BodyStation(possibleBodies);
-        electronicsStation = new ElectronicsStation(possibleElectronics);
-        engineStation = new EngineStation(possibleEngines);
-        wheelStation = new WheelStation(possibleWheels);
+        bodyWorker = new WorkerStation<>(new BodyStation(possibleBodies));
+        electronicsWorker = new WorkerStation<>(new ElectronicsStation(possibleElectronics));
+        engineWorker = new WorkerStation<>(new EngineStation(possibleEngines));
+        wheelWorker = new WorkerStation<>(new WheelStation(possibleWheels));
+        for (CarRequirement requirement : requirements)
+            carBuilder.addCarRequirement(requirement);
     }
 }

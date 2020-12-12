@@ -9,6 +9,10 @@ public abstract class Station<T extends Component> {
     private ArrayList<T> possibleTypes;
     private int currentType;
 
+    private int currentProgress = 0;
+
+    int batchSize = 10;
+
     public Station() {
         this(new ArrayList<>());
     }
@@ -17,8 +21,14 @@ public abstract class Station<T extends Component> {
         this.possibleTypes = new ArrayList<>(possibleTypes);
     }
 
+    public abstract T produceOne();
+
     public void addType(T type) {
         possibleTypes.add(type);
+    }
+
+    public T getCurrentType() {
+        return possibleTypes.get(currentType);
     }
 
     public void setCurrentType(int index){
@@ -33,13 +43,11 @@ public abstract class Station<T extends Component> {
         return possibleTypeNames;
     }
 
-    public T startProducing(){
-        //TODO: thread start
-        T typeToProduce = possibleTypes.get(currentType);
-        return typeToProduce; //TODO: copy
+    public int getCurrentProgress() {
+        return currentProgress;
     }
 
-    public void stopProducing(){
-        //TODO: thread stop
+    void setCurrentProgress(int currentProgress) {
+        this.currentProgress = currentProgress;
     }
 }

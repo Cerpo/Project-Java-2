@@ -15,7 +15,15 @@ public class Electronics extends Component {
     private boolean hasGps;
     private boolean hasClimate;
     private String lampType;
-    
+
+    public Electronics() {}
+
+    public Electronics(Electronics other) {
+        this.hasGps = other.hasGps;
+        this.hasClimate = other.hasClimate;
+        this.lampType = other.lampType;
+    }
+
     public boolean hasGps() {
 		return hasGps;
 	}
@@ -27,8 +35,6 @@ public class Electronics extends Component {
 	public String getLampType() {
 		return lampType;
 	}
-
-	
 
     @Override
     public String getCategory() {

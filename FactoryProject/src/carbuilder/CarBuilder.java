@@ -3,10 +3,19 @@ package carbuilder;
 import storage.ComponentStorage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CarBuilder {
-    ArrayList<CarRequirement> carRequirements = new ArrayList<>();
+    ArrayList<CarRequirement> carRequirements;
     int currentCarRequirement;
+
+    public CarBuilder() {
+        this(new ArrayList<>());
+    }
+
+    public CarBuilder(List<CarRequirement> requirements) {
+        this.carRequirements = new ArrayList<>(requirements);
+    }
 
     public void addCarRequirement(CarRequirement carRequirement) {
         carRequirements.add(carRequirement);

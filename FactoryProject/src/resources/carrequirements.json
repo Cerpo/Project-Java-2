@@ -1,0 +1,16 @@
+[
+  {
+    "carName": "Ford",
+    "requiredBodyType": "Ford",
+    "requiredElectronicsType": "Ford",
+    "requiredEngineType": "Ford",
+    "requiredWheelType": "Michelin"
+  },
+  {
+    "carName": "Tesla",
+    "requiredBodyType": "Opel",
+    "requiredElectronicsType": "Ferrari",
+    "requiredEngineType": "Ferrari",
+    "requiredWheelType": "Hankook"
+  }
+]

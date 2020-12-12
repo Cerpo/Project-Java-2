@@ -14,6 +14,7 @@ import java.util.OptionalInt;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import carbuilder.CarRequirement;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -198,9 +199,23 @@ public class JsonUtils {
 		}).collect(Collectors.toList());
 		
 		return ret;
-		
 	}
-	
+
+	public static List<CarRequirement> getCarRequirements(File file) throws FileNotFoundException {
+		Optional<JsonArray> opt=parseArrayFromFile(file);
+		if(!opt.isPresent()) throw new FileNotFoundException();
+
+		Gson gson=new Gson();
+
+		JsonArray arr=opt.get();
+		List<JsonElement> list=JsonUtils.getElements(arr);
+		List<CarRequirement> ret=list.stream().map((JsonElement elem)->{
+			return gson.fromJson(elem, CarRequirement.class);
+		}).collect(Collectors.toList());
+
+		return ret;
+	}
+
 	public static final <T> T unboxOptional(Optional<T> opt) {
 		return opt.isPresent() ? opt.get() : null;
 	}
