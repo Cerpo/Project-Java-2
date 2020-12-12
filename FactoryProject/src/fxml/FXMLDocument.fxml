@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="824.0" prefWidth="1218.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Main.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="824.0" prefWidth="1218.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="main.FXMLDocumentController">
    <children>
       <Pane prefHeight="824.0" prefWidth="1232.0">
          <children>

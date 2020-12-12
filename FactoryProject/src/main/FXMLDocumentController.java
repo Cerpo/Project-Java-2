@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Main;
+package main;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,10 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableView;
 
-/**
- *
- * @author Csanád
- */
 public class FXMLDocumentController implements Initializable {
     
     private Label label;

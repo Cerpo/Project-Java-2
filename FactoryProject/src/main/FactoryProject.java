@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Main;
+package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-import Util.JsonUtils;
+import util.JsonUtils;
 import carbuilder.CarBuilder;
 import carbuilder.CarRequirement;
 import components.*;
@@ -28,10 +21,6 @@ import stations.WheelStation;
 import storage.ComponentStorage;
 import threading.WorkerStation;
 
-/**
- *
- * @author Csanád
- */
 public class FactoryProject extends Application {
 
     private static WorkerStation<Body> bodyWorker;
@@ -45,7 +34,7 @@ public class FactoryProject extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(new URL("file:src/FXML/FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(new URL("file:src/fxml/FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
         
