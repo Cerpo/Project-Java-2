@@ -19,6 +19,7 @@ public class Body extends Component {
     	this.numberOfSeats = other.numberOfSeats;
     	this.numberOfDoors = other.numberOfDoors;
     	this.carpetMaterial = other.carpetMaterial;
+        this.setTypeCode(other.getTypeCode());
 	}
 
     public String getColor() {

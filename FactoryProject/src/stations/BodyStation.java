@@ -13,17 +13,4 @@ public class BodyStation extends Station<Body> {
         super(possibleTypes);
     }
 
-    @Override
-    public Body produceOne() {
-        Body typeToProduce = getCurrentType();
-        setCurrentProgress(0);
-        try {
-            long sleepTime = 2000; //TODO: dynamic sleep time, using typeToProduce
-            for (int i = 0; i < sleepTime; i += sleepTime / batchSize) {
-                setCurrentProgress(i);
-                Thread.sleep(i); // simulate production time
-            }
-        } catch (InterruptedException e) {}
-        return new Body(typeToProduce);
-    }
 }

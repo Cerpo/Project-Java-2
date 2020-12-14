@@ -15,6 +15,7 @@ public class Engine extends Component {
 		this.isGasoline = other.isGasoline;
 		this.horsePower = other.horsePower;
 		this.numberOfCylinders = other.numberOfCylinders;
+                this.setTypeCode(other.getTypeCode());
 	}
 
 	public int getCylinderCapacity() {

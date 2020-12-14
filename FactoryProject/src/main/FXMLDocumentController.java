@@ -98,7 +98,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<CarT, String> carNameCol;
 
-
     ObservableList<String> bodyO = FXCollections.observableArrayList();
     ObservableList<String> wheelO = FXCollections.observableArrayList();
     ObservableList<String> engineO = FXCollections.observableArrayList();
@@ -116,7 +115,6 @@ public class FXMLDocumentController implements Initializable {
     private static CarBuilder carBuilder = new CarBuilder();
 
     private static ComponentStorage storage = new ComponentStorage();
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -142,49 +140,142 @@ public class FXMLDocumentController implements Initializable {
         engineList.setItems(FXCollections.observableArrayList(possibleTypes));
         possibleTypes = wheelWorker.getStation().getPossibleTypes();
         wheelList.setItems(FXCollections.observableArrayList(possibleTypes));
+        possibleTypes = carBuilder.getPossibleTypes();
+        carList.setItems(FXCollections.observableArrayList(possibleTypes));
     }
 
+    boolean startEn = true;
 
     public void startEngine(ActionEvent event) throws InterruptedException {
-        System.out.println(storage.getComponents());
-        engineWorker.execute(); // itt indítod el az állomást
-        Thread.sleep(500); // ez azt szimulálja hogy a felhasználó vár
-        List<Engine> results = engineWorker.cancel(); // itt állítod le az állomást
-        for (Engine engine : results) // az állomás végtermékeit meg beleteszed az tárolóba
-            storage.addComponent(engine);
-        List<Component> comps = storage.getComponents();
-        for(Component comp : comps){
-            System.out.println(comp.getTypeCode());
-        }
-        EngineT e = new EngineT(engineList.getValue());
-        engineTable.getItems().add(e);
+        if (startEn) {
+            int i = 0;
+            for (String name : engineList.getItems()) {
+                if (name.equals(engineList.getValue())) {
+                    engineWorker.getStation().setCurrentType(i);
+                }
+                i++;
+            }
+            engineWorker.execute(); // itt indítod el az állomást
 
+            engineWorker.setProgressBar(enginePB);
+            startEn = false;
+            engineBtn.setText("Stop");
+        } else {
+            List<Engine> results = engineWorker.cancel();
+            for (Engine engine : results) {
+                storage.addComponent(engine);
+
+                EngineT eng = new EngineT(engine.getTypeCode());
+
+                engineTable.getItems().add(eng);
+            }
+            startEn = true;
+            engineBtn.setText("Start");
+            enginePB.setProgress(0);
+        }
     }
+    boolean startW = true;
 
     public void startWheel(ActionEvent event) throws InterruptedException {
-        WheelT w = new WheelT(wheelList.getValue());
-        wheelTable.getItems().add(w);
+        if (startW) {
+            int i = 0;
+            for (String name : wheelList.getItems()) {
+                if (name.equals(wheelList.getValue())) {
+                    wheelWorker.getStation().setCurrentType(i);
+                }
+                i++;
+            }
+            wheelWorker.execute(); // itt indítod el az állomást
+            wheelWorker.setProgressBar(wheelPB);
+            startW = false;
+            wheelBtn.setText("Stop");
+        } else {
+            List<Wheel> results = wheelWorker.cancel();
+            for (Wheel wheel : results) {
+                storage.addComponent(wheel);
+
+                WheelT w = new WheelT(wheel.getTypeCode());
+
+                wheelTable.getItems().add(w);
+            }
+            startW = true;
+            wheelBtn.setText("Start");
+            wheelPB.setProgress(0);
+        }
 
     }
-
+    boolean startB = true;
     public void startBody(ActionEvent event) throws InterruptedException {
-        BodyT b = new BodyT(bodyList.getValue());
-        bodyTable.getItems().add(b);
+        if (startB) {
+            int i = 0;
+            for (String name : bodyList.getItems()) {
+                if (name.equals(bodyList.getValue())) {
+                    bodyWorker.getStation().setCurrentType(i);
+                }
+                i++;
+            }
+            bodyWorker.execute(); // itt indítod el az állomást
+            bodyWorker.setProgressBar(bodyPB);
+            startB = false;
+            bodyBtn.setText("Stop");
+        } else {
+            List<Body> results = bodyWorker.cancel();
+            for (Body body : results) {
+                storage.addComponent(body);
 
-    }
+                BodyT b = new BodyT(body.getTypeCode());
 
-    public void startElectronic(ActionEvent event) throws InterruptedException {
-        ElectronicT e = new ElectronicT(electronicList.getValue());
-        electronicTable.getItems().add(e);
+                bodyTable.getItems().add(b);
+            }
+            startB = true;  
+            bodyBtn.setText("Start");
+            bodyPB.setProgress(0);
+        }
 
-    }
-
-    public void startCar(ActionEvent event) throws InterruptedException {
-        CarT c = new CarT(carList.getValue());
-        carTable.getItems().add(c);
-        
     }
     
+    boolean startEl = true;
+    public void startElectronic(ActionEvent event) throws InterruptedException {
+              if (startEl) {
+            int i = 0;
+            for (String name : electronicList.getItems()) {
+                if (name.equals(electronicList.getValue())) {
+                    electronicsWorker.getStation().setCurrentType(i);
+                }
+                i++;
+            }
+            electronicsWorker.execute(); // itt indítod el az állomást
+            electronicsWorker.setProgressBar(electronicPB);
+            startEl = false;
+            electronicBtn.setText("Stop");
+        } else {
+            List<Electronics> results = electronicsWorker.cancel();
+            for (Electronics el : results) {
+                storage.addComponent(el);
+
+                ElectronicT e = new ElectronicT(el.getTypeCode());
+
+                electronicTable.getItems().add(e);
+            }
+            startEl = true;  
+            electronicBtn.setText("Start");
+            electronicPB.setProgress(0);
+        }
+
+    }
+    
+
+    public void startCar(ActionEvent event) throws InterruptedException {
+        if(carBuilder.build(storage)){
+            CarT car = new CarT(carList.getValue());
+            carTable.getItems().add(car);
+            carLabel.setVisible(false);
+        }else{
+            carLabel.setText("Some of the requirements are missing!");
+            carLabel.setVisible(true);
+        }
+    }
+
     private static void setUpStations() {
         List<Body> possibleBodies;
         List<Electronics> possibleElectronics;
@@ -199,8 +290,8 @@ public class FXMLDocumentController implements Initializable {
             possibleWheels = JsonUtils.getComponents(new File("src/resources/wheels.json"), Wheel.class);
             requirements = JsonUtils.getCarRequirements(new File("src/resources/carrequirements.json"));
         } catch (FileNotFoundException e) {
-            System.out.println("Could not find json files, with working directory: " +
-                    System.getProperty("user.dir"));
+            System.out.println("Could not find json files, with working directory: "
+                    + System.getProperty("user.dir"));
             e.printStackTrace();
             return;
         }
@@ -209,9 +300,9 @@ public class FXMLDocumentController implements Initializable {
         electronicsWorker = new WorkerStation<>(new ElectronicsStation(possibleElectronics));
         engineWorker = new WorkerStation<>(new EngineStation(possibleEngines));
         wheelWorker = new WorkerStation<>(new WheelStation(possibleWheels));
-        for (CarRequirement requirement : requirements)
+        for (CarRequirement requirement : requirements) {
             carBuilder.addCarRequirement(requirement);
+        }
     }
-  
-}
 
+}

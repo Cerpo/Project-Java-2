@@ -21,6 +21,14 @@ public class CarBuilder {
         carRequirements.add(carRequirement);
     }
 
+    public ArrayList<String> getPossibleTypes() {
+        ArrayList<String> possibleTypeNames = new ArrayList<>();
+        carRequirements.forEach((item) -> {
+            possibleTypeNames.add(item.getCarName());
+        });
+        return possibleTypeNames;
+    }
+    
     public void setCurrentCarRequirement(int index){
         this.currentCarRequirement = index;
     }

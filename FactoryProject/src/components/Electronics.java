@@ -13,6 +13,7 @@ public class Electronics extends Component {
         this.hasGps = other.hasGps;
         this.hasClimate = other.hasClimate;
         this.lampType = other.lampType;
+        this.setTypeCode(other.getTypeCode());
     }
 
     public boolean hasGps() {

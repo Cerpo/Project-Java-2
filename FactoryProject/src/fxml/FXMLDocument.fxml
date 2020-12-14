@@ -22,7 +22,6 @@
                 <ComboBox fx:id="carList" layoutX="334.0" layoutY="566.0" prefWidth="150.0" promptText="Chose a Car" />
                 <ProgressBar fx:id="enginePB" layoutX="62.0" layoutY="52.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
                 <ProgressBar fx:id="electronicPB" layoutX="62.0" layoutY="334.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
-                <ProgressBar fx:id="carPB" layoutX="334.0" layoutY="606.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
                 <ProgressBar fx:id="wheelPB" layoutX="627.0" layoutY="52.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
                 <ProgressBar fx:id="bodyPB" layoutX="627.0" layoutY="334.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
                 <Label fx:id="engineLabel" layoutX="210.0" layoutY="79.0" prefHeight="17.0" prefWidth="53.0" textAlignment="CENTER" visible="false" />
@@ -51,11 +50,12 @@
                   <TableColumn fx:id="bodyNameCol" prefWidth="245.0" text="Bodies made:" />
                </columns>
             </TableView>
-            <TableView fx:id="carTable" layoutX="334.0" layoutY="640.0" prefHeight="170.0" prefWidth="246.0">
+            <TableView fx:id="carTable" layoutX="334.0" layoutY="600.0" prefHeight="170.0" prefWidth="246.0">
                <columns>
                   <TableColumn fx:id="carNameCol" prefWidth="245.0" text="Cars made:" />
                </columns>
             </TableView>
+            <Label fx:id="carLabel" layoutX="334.0" layoutY="776.0" prefHeight="17.0" prefWidth="246.0" textFill="RED" visible="false" />
             </children>
         </Pane>
     </children>

@@ -15,6 +15,7 @@ public class Wheel extends Component {
 		this.tireSize = other.tireSize;
 		this.isSummerTire = other.isSummerTire;
 		this.weight = other.weight;
+                this.setTypeCode(other.getTypeCode());
 	}
 
 	public int getRimSize() {
