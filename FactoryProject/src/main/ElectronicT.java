@@ -5,18 +5,17 @@
  */
 package main;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
  * @author Csanad
  */
-public class EngineT {
+public class ElectronicT {
     private SimpleStringProperty name;
     //private SimpleIntegerProperty count;
     
-    public EngineT(String name){
+    public ElectronicT(String name){
         this.name = new SimpleStringProperty(name);
         //this.count = new SimpleIntegerProperty(count);
     }
@@ -28,15 +27,4 @@ public class EngineT {
     public void setName(String name){
         this.name= new SimpleStringProperty(name);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-            if (((EngineT) obj).getName().equals(name)){
-                return true;
-            }else{
-                return false;
-            }
-        }
-        
-
 }

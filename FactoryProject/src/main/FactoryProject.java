@@ -46,10 +46,10 @@ public class FactoryProject extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        setUpStations();
+        //setUpStations();
 
         // PÉLDA
-        /*
+       /* 
         System.out.println(storage.getComponents());
         bodyWorker.execute(); // itt indítod el az állomást
         Thread.sleep(2000); // ez azt szimulálja hogy a felhasználó vár

@@ -77,8 +77,37 @@ public class FXMLDocumentController implements Initializable {
     private Label carLabel;
     @FXML
     private Label engineCount;
-    
+    @FXML
+    private TableView<EngineT> engineTable;
+    @FXML
+    private TableColumn<EngineT, String> engineNameCol;
+    @FXML
+    private TableView<BodyT> bodyTable;
+    @FXML
+    private TableColumn<BodyT, String> bodyNameCol;
+    @FXML
+    private TableView<ElectronicT> electronicTable;
+    @FXML
+    private TableColumn<ElectronicT, String> electronicNameCol;
+    @FXML
+    private TableView<WheelT> wheelTable;
+    @FXML
+    private TableColumn<WheelT, String> wheelNameCol;
+    @FXML
+    private TableView<CarT> carTable;
+    @FXML
+    private TableColumn<CarT, String> carNameCol;
 
+
+    ObservableList<String> bodyO = FXCollections.observableArrayList();
+    ObservableList<String> wheelO = FXCollections.observableArrayList();
+    ObservableList<String> engineO = FXCollections.observableArrayList();
+    ObservableList<String> electorincsO = FXCollections.observableArrayList();
+    ObservableList<EngineT> eng = FXCollections.observableArrayList();
+    ObservableList<CarT> car = FXCollections.observableArrayList();
+    ObservableList<BodyT> body = FXCollections.observableArrayList();
+    ObservableList<WheelT> wheel = FXCollections.observableArrayList();
+    ObservableList<ElectronicT> elec = FXCollections.observableArrayList();
     private static WorkerStation<Body> bodyWorker;
     private static WorkerStation<Electronics> electronicsWorker;
     private static WorkerStation<Engine> engineWorker;
@@ -89,14 +118,19 @@ public class FXMLDocumentController implements Initializable {
     private static ComponentStorage storage = new ComponentStorage();
 
 
-    
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        bodyNameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        wheelNameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        electronicNameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        engineNameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        carNameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+
+        engineTable.getItems().setAll(eng);
+        carTable.getItems().setAll(car);
+        electronicTable.getItems().setAll(elec);
+        bodyTable.getItems().setAll(body);
+        wheelTable.getItems().setAll(wheel);
         setUpStations();
 
         ArrayList<String> possibleTypes;
@@ -113,12 +147,41 @@ public class FXMLDocumentController implements Initializable {
 
     public void startEngine(ActionEvent event) throws InterruptedException {
         System.out.println(storage.getComponents());
-        engineWorker.execute();
-        Thread.sleep(2000);
-        List<Engine> results = engineWorker.cancel(); 
-        for (Engine engine : results) 
+        engineWorker.execute(); // itt indítod el az állomást
+        Thread.sleep(500); // ez azt szimulálja hogy a felhasználó vár
+        List<Engine> results = engineWorker.cancel(); // itt állítod le az állomást
+        for (Engine engine : results) // az állomás végtermékeit meg beleteszed az tárolóba
             storage.addComponent(engine);
-        System.out.println(storage.getComponents());
+        List<Component> comps = storage.getComponents();
+        for(Component comp : comps){
+            System.out.println(comp.getTypeCode());
+        }
+        EngineT e = new EngineT(engineList.getValue());
+        engineTable.getItems().add(e);
+
+    }
+
+    public void startWheel(ActionEvent event) throws InterruptedException {
+        WheelT w = new WheelT(wheelList.getValue());
+        wheelTable.getItems().add(w);
+
+    }
+
+    public void startBody(ActionEvent event) throws InterruptedException {
+        BodyT b = new BodyT(bodyList.getValue());
+        bodyTable.getItems().add(b);
+
+    }
+
+    public void startElectronic(ActionEvent event) throws InterruptedException {
+        ElectronicT e = new ElectronicT(electronicList.getValue());
+        electronicTable.getItems().add(e);
+
+    }
+
+    public void startCar(ActionEvent event) throws InterruptedException {
+        CarT c = new CarT(carList.getValue());
+        carTable.getItems().add(c);
         
     }
     
