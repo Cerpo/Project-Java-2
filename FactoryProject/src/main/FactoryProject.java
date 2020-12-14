@@ -49,14 +49,15 @@ public class FactoryProject extends Application {
         setUpStations();
 
         // PÉLDA
+        /*
         System.out.println(storage.getComponents());
         bodyWorker.execute(); // itt indítod el az állomást
-        Thread.sleep(20000); // ez azt szimulálja hogy a felhasználó vár
+        Thread.sleep(2000); // ez azt szimulálja hogy a felhasználó vár
         List<Body> results = bodyWorker.cancel(); // itt állítod le az állomást
         for (Body body : results) // az állomás végtermékeit meg beleteszed az tárolóba
             storage.addComponent(body);
         System.out.println(storage.getComponents());
-
+*/
         launch(args);
     }
 

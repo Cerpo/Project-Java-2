@@ -6,37 +6,33 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="824.0" prefWidth="1218.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="main.FXMLDocumentController">
-   <children>
-      <Pane prefHeight="824.0" prefWidth="1232.0">
-         <children>
-            <TableView fx:id="componentTable" layoutX="18.0" layoutY="558.0" prefHeight="220.0" prefWidth="1183.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
-            </TableView>
-            <Button fx:id="engineBtn" disable="true" layoutX="377.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Start" />
-            <Button fx:id="wheelBtn" disable="true" layoutX="1050.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Start" />
-            <Button fx:id="electronicBtn" disable="true" layoutX="377.0" layoutY="208.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Start" />
-            <Button fx:id="bodyBtn" disable="true" layoutX="1050.0" layoutY="221.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Start" />
-            <Button fx:id="carBtn" disable="true" layoutX="702.0" layoutY="387.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Start" />
-            <ComboBox fx:id="engineList" layoutX="210.0" layoutY="14.0" prefWidth="150.0" />
-            <ComboBox fx:id="electronicList" layoutX="210.0" layoutY="208.0" prefWidth="150.0" />
-            <ComboBox fx:id="wheelList" layoutX="881.0" layoutY="14.0" prefWidth="150.0" />
-            <ComboBox fx:id="bodyList" layoutX="881.0" layoutY="221.0" prefWidth="150.0" />
-            <ComboBox fx:id="carList" layoutX="535.0" layoutY="387.0" prefWidth="150.0" />
-            <ProgressBar fx:id="enginePB" layoutX="210.0" layoutY="52.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
-            <ProgressBar fx:id="electronicPB" layoutX="210.0" layoutY="246.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
-            <ProgressBar fx:id="carPB" layoutX="535.0" layoutY="430.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
-            <ProgressBar fx:id="wheelPB" layoutX="881.0" layoutY="52.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
-            <ProgressBar fx:id="bodyPB" layoutX="881.0" layoutY="255.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
-            <Label fx:id="engineLabel" layoutX="210.0" layoutY="79.0" prefHeight="17.0" prefWidth="246.0" textAlignment="CENTER" visible="false" />
-            <Label fx:id="wheelLabel" layoutX="881.0" layoutY="79.0" prefHeight="17.0" prefWidth="246.0" textAlignment="CENTER" visible="false" />
-            <Label fx:id="electronicLabel" layoutX="211.0" layoutY="273.0" prefHeight="17.0" prefWidth="246.0" textAlignment="CENTER" visible="false" />
-            <Label fx:id="bodyLabel" layoutX="882.0" layoutY="290.0" prefHeight="17.0" prefWidth="246.0" textAlignment="CENTER" visible="false" />
-            <Label fx:id="carLabel" layoutX="538.0" layoutY="461.0" prefHeight="17.0" prefWidth="246.0" textAlignment="CENTER" visible="false" />
-         </children>
-      </Pane>
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="824.0" prefWidth="1218.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.FXMLDocumentController">
+    <children>
+        <Pane prefHeight="824.0" prefWidth="1232.0">
+            <children>
+                <Button fx:id="engineBtn" layoutX="377.0" layoutY="14.0" mnemonicParsing="false" onAction="#startEngine" prefHeight="25.0" prefWidth="77.0" text="Start" />
+                <Button fx:id="wheelBtn" layoutX="1050.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Start" />
+                <Button fx:id="electronicBtn" layoutX="377.0" layoutY="208.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Start" />
+                <Button fx:id="bodyBtn" layoutX="1050.0" layoutY="221.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Start" />
+                <Button fx:id="carBtn" layoutX="702.0" layoutY="387.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Start" />
+                <ComboBox fx:id="engineList" layoutX="210.0" layoutY="14.0" prefWidth="150.0" promptText="Choose an Engine" />
+                <ComboBox fx:id="electronicList" layoutX="210.0" layoutY="208.0" prefWidth="150.0" promptText="Choose an Electronic" />
+                <ComboBox fx:id="wheelList" layoutX="881.0" layoutY="14.0" prefWidth="150.0" promptText="Choose a Wheel" />
+                <ComboBox fx:id="bodyList" layoutX="881.0" layoutY="221.0" prefWidth="150.0" promptText="Choose a Body" />
+                <ComboBox fx:id="carList" layoutX="535.0" layoutY="387.0" prefWidth="150.0" promptText="Chose a Car" />
+                <ProgressBar fx:id="enginePB" layoutX="210.0" layoutY="52.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
+                <ProgressBar fx:id="electronicPB" layoutX="210.0" layoutY="246.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
+                <ProgressBar fx:id="carPB" layoutX="535.0" layoutY="430.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
+                <ProgressBar fx:id="wheelPB" layoutX="881.0" layoutY="52.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
+                <ProgressBar fx:id="bodyPB" layoutX="881.0" layoutY="255.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
+                <Label fx:id="engineLabel" layoutX="210.0" layoutY="79.0" prefHeight="17.0" prefWidth="53.0" textAlignment="CENTER" visible="false" />
+                <Label fx:id="wheelLabel" layoutX="881.0" layoutY="79.0" prefHeight="17.0" prefWidth="246.0" textAlignment="CENTER" visible="false" />
+                <Label fx:id="electronicLabel" layoutX="211.0" layoutY="273.0" prefHeight="17.0" prefWidth="246.0" textAlignment="CENTER" visible="false" />
+                <Label fx:id="bodyLabel" layoutX="882.0" layoutY="290.0" prefHeight="17.0" prefWidth="246.0" textAlignment="CENTER" visible="false" />
+                <Label fx:id="carLabel" layoutX="538.0" layoutY="461.0" prefHeight="17.0" prefWidth="246.0" textAlignment="CENTER" visible="false" />
+            <Label layoutX="211.0" layoutY="79.0" prefHeight="17.0" prefWidth="53.0" text="Counter:" />
+            <Label fx:id="engineCount" layoutX="263.0" layoutY="79.0" />
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>
