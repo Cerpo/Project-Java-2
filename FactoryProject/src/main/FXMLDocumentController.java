@@ -6,6 +6,7 @@ import components.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -78,11 +79,6 @@ public class FXMLDocumentController implements Initializable {
     private Label engineCount;
     
 
-    ObservableList<String> bodyO = FXCollections.observableArrayList();
-    ObservableList<String> wheelO = FXCollections.observableArrayList();
-    ObservableList<String> engineO = FXCollections.observableArrayList();
-    ObservableList<String> electorincsO = FXCollections.observableArrayList();
-   //ObservableList<EngineT> eng = FXCollections.observableArrayList();
     private static WorkerStation<Body> bodyWorker;
     private static WorkerStation<Electronics> electronicsWorker;
     private static WorkerStation<Engine> engineWorker;
@@ -101,40 +97,17 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //engineCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        //engineNumCol.setCellValueFactory(new PropertyValueFactory<>("Count"));
-
-        //componentTable.getItems().setAll(eng);
         setUpStations();
-        try {
-            List<Body> buddies = JsonUtils.getComponents(new File("src/resources/bodies.json"), Body.class);
-            buddies.forEach(b -> {
-                bodyO.add(b.getTypeCode());
-            });
-            bodyList.setItems(bodyO);
 
-            List<Wheel> wheels = JsonUtils.getComponents(new File("src/resources/wheels.json"), Wheel.class);
-            wheels.forEach(w -> {
-                wheelO.add(w.getTypeCode());
-            });
-            wheelList.setItems(wheelO);
-
-            List<Engine> engines = JsonUtils.getComponents(new File("src/resources/engines.json"), Engine.class);
-            engines.forEach(en -> {
-                engineO.add(en.getTypeCode());
-            });
-            engineList.setItems(engineO);
-
-            List<Electronics> electronics = JsonUtils.getComponents(new File("src/resources/electronics.json"), Electronics.class);
-            electronics.forEach(el -> {
-                electorincsO.add(el.getTypeCode());
-            });
-            electronicList.setItems(electorincsO);
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        ArrayList<String> possibleTypes;
+        possibleTypes = bodyWorker.getStation().getPossibleTypes();
+        bodyList.setItems(FXCollections.observableArrayList(possibleTypes));
+        possibleTypes = electronicsWorker.getStation().getPossibleTypes();
+        electronicList.setItems(FXCollections.observableArrayList(possibleTypes));
+        possibleTypes = engineWorker.getStation().getPossibleTypes();
+        engineList.setItems(FXCollections.observableArrayList(possibleTypes));
+        possibleTypes = wheelWorker.getStation().getPossibleTypes();
+        wheelList.setItems(FXCollections.observableArrayList(possibleTypes));
     }
 
 

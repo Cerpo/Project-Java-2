@@ -39,4 +39,8 @@ public class WorkerStation<T extends Component> extends SwingWorker<List<T>, Voi
             return new ArrayList<>();
         }
     }
+
+    public Station<T> getStation() {
+        return station;
+    }
 }
