@@ -60,6 +60,8 @@ public class WorkerStation<T extends Component> {
                             this.firePropertyChange("progress", this.currentProgress, i/(double)sleepTime);
                             this.currentProgress = i;
                             Thread.sleep(sleepTime/30); // simulate production time
+                            if (cancelled)
+                                return createdComponents;
                         }
                     } catch (InterruptedException e) {
                     }
