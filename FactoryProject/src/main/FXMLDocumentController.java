@@ -9,8 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,7 +22,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Pair;
+import main.model.*;
 import stations.BodyStation;
 import stations.ElectronicsStation;
 import stations.EngineStation;
@@ -78,35 +77,31 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label engineCount;
     @FXML
-    private TableView<EngineT> engineTable;
+    private TableView<TypeNameModel> engineTable;
     @FXML
-    private TableColumn<EngineT, String> engineNameCol;
+    private TableColumn<TypeNameModel, String> engineNameCol;
     @FXML
-    private TableView<BodyT> bodyTable;
+    private TableView<TypeNameModel> bodyTable;
     @FXML
-    private TableColumn<BodyT, String> bodyNameCol;
+    private TableColumn<TypeNameModel, String> bodyNameCol;
     @FXML
-    private TableView<ElectronicT> electronicTable;
+    private TableView<TypeNameModel> electronicTable;
     @FXML
-    private TableColumn<ElectronicT, String> electronicNameCol;
+    private TableColumn<TypeNameModel, String> electronicNameCol;
     @FXML
-    private TableView<WheelT> wheelTable;
+    private TableView<TypeNameModel> wheelTable;
     @FXML
-    private TableColumn<WheelT, String> wheelNameCol;
+    private TableColumn<TypeNameModel, String> wheelNameCol;
     @FXML
-    private TableView<CarT> carTable;
+    private TableView<TypeNameModel> carTable;
     @FXML
-    private TableColumn<CarT, String> carNameCol;
+    private TableColumn<TypeNameModel, String> carNameCol;
 
-    ObservableList<String> bodyO = FXCollections.observableArrayList();
-    ObservableList<String> wheelO = FXCollections.observableArrayList();
-    ObservableList<String> engineO = FXCollections.observableArrayList();
-    ObservableList<String> electorincsO = FXCollections.observableArrayList();
-    ObservableList<EngineT> eng = FXCollections.observableArrayList();
-    ObservableList<CarT> car = FXCollections.observableArrayList();
-    ObservableList<BodyT> body = FXCollections.observableArrayList();
-    ObservableList<WheelT> wheel = FXCollections.observableArrayList();
-    ObservableList<ElectronicT> elec = FXCollections.observableArrayList();
+    ObservableList<TypeNameModel> eng = FXCollections.observableArrayList();
+    ObservableList<TypeNameModel> car = FXCollections.observableArrayList();
+    ObservableList<TypeNameModel> body = FXCollections.observableArrayList();
+    ObservableList<TypeNameModel> wheel = FXCollections.observableArrayList();
+    ObservableList<TypeNameModel> elec = FXCollections.observableArrayList();
     private static WorkerStation<Body> bodyWorker;
     private static WorkerStation<Electronics> electronicsWorker;
     private static WorkerStation<Engine> engineWorker;
@@ -255,7 +250,7 @@ public class FXMLDocumentController implements Initializable {
 
     public void startCar(ActionEvent event) throws InterruptedException {
         if(carBuilder.build(storage)){
-            CarT car = new CarT(carList.getValue());
+            TypeNameModel car = new TypeNameModel(carList.getValue());
             carTable.getItems().add(car);
             carLabel.setVisible(false);
             updateTable();
@@ -295,31 +290,23 @@ public class FXMLDocumentController implements Initializable {
     }
 
     public void updateTable(){
-        for(int i=0; i<wheelTable.getItems().size();i++){
-            wheelTable.getItems().clear();
-        }
-        for(int i=0; i<bodyTable.getItems().size();i++){
-            bodyTable.getItems().clear();
-        }
-        for(int i=0; i<engineTable.getItems().size();i++){
-            engineTable.getItems().clear();
-        }
-        for(int i=0; i<electronicTable.getItems().size();i++){
-            electronicTable.getItems().clear();
-        }
-        
+        wheelTable.getItems().clear();
+        bodyTable.getItems().clear();
+        engineTable.getItems().clear();
+        electronicTable.getItems().clear();
+
         for(Component comp : storage.getComponents()){
             if(comp.getCategory().equals("Body")){
-                BodyT b = new BodyT(comp.getTypeCode());
+                TypeNameModel b = new TypeNameModel(comp.getTypeCode());
                 bodyTable.getItems().add(b);
             }else if(comp.getCategory().equals("Engine")){
-                EngineT eng = new EngineT(comp.getTypeCode());
+                TypeNameModel eng = new TypeNameModel(comp.getTypeCode());
                 engineTable.getItems().add(eng);
             }else if(comp.getCategory().equals("Electronics")){
-                ElectronicT e = new ElectronicT(comp.getTypeCode());
+                TypeNameModel e = new TypeNameModel(comp.getTypeCode());
                 electronicTable.getItems().add(e);
             }else if(comp.getCategory().equals("Wheel")){
-                WheelT w = new WheelT(comp.getTypeCode());
+                TypeNameModel w = new TypeNameModel(comp.getTypeCode());
                 wheelTable.getItems().add(w);
             }
         }

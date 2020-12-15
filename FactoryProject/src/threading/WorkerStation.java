@@ -63,7 +63,7 @@ public class WorkerStation<T extends Component> {
                             if (cancelled)
                                 return createdComponents;
                         }
-                    } catch (InterruptedException e) {
+                    } catch (InterruptedException ignored) {
                     }
                     createdComponents.add(type);
                 }
