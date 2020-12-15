@@ -164,11 +164,8 @@ public class FXMLDocumentController implements Initializable {
             List<Engine> results = engineWorker.cancel();
             for (Engine engine : results) {
                 storage.addComponent(engine);
-
-                EngineT eng = new EngineT(engine.getTypeCode());
-
-                engineTable.getItems().add(eng);
             }
+            updateTable();
             startEn = true;
             engineBtn.setText("Start");
             enginePB.setProgress(0);
@@ -193,11 +190,8 @@ public class FXMLDocumentController implements Initializable {
             List<Wheel> results = wheelWorker.cancel();
             for (Wheel wheel : results) {
                 storage.addComponent(wheel);
-
-                WheelT w = new WheelT(wheel.getTypeCode());
-
-                wheelTable.getItems().add(w);
             }
+            updateTable();
             startW = true;
             wheelBtn.setText("Start");
             wheelPB.setProgress(0);
@@ -222,11 +216,8 @@ public class FXMLDocumentController implements Initializable {
             List<Body> results = bodyWorker.cancel();
             for (Body body : results) {
                 storage.addComponent(body);
-
-                BodyT b = new BodyT(body.getTypeCode());
-
-                bodyTable.getItems().add(b);
             }
+            updateTable();
             startB = true;  
             bodyBtn.setText("Start");
             bodyPB.setProgress(0);
@@ -252,11 +243,8 @@ public class FXMLDocumentController implements Initializable {
             List<Electronics> results = electronicsWorker.cancel();
             for (Electronics el : results) {
                 storage.addComponent(el);
-
-                ElectronicT e = new ElectronicT(el.getTypeCode());
-
-                electronicTable.getItems().add(e);
             }
+            updateTable();
             startEl = true;  
             electronicBtn.setText("Start");
             electronicPB.setProgress(0);
@@ -270,6 +258,7 @@ public class FXMLDocumentController implements Initializable {
             CarT car = new CarT(carList.getValue());
             carTable.getItems().add(car);
             carLabel.setVisible(false);
+            updateTable();
         }else{
             carLabel.setText("Some of the requirements are missing!");
             carLabel.setVisible(true);
@@ -305,4 +294,34 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    public void updateTable(){
+        for(int i=0; i<wheelTable.getItems().size();i++){
+            wheelTable.getItems().clear();
+        }
+        for(int i=0; i<bodyTable.getItems().size();i++){
+            bodyTable.getItems().clear();
+        }
+        for(int i=0; i<engineTable.getItems().size();i++){
+            engineTable.getItems().clear();
+        }
+        for(int i=0; i<electronicTable.getItems().size();i++){
+            electronicTable.getItems().clear();
+        }
+        
+        for(Component comp : storage.getComponents()){
+            if(comp.getCategory().equals("Body")){
+                BodyT b = new BodyT(comp.getTypeCode());
+                bodyTable.getItems().add(b);
+            }else if(comp.getCategory().equals("Engine")){
+                EngineT eng = new EngineT(comp.getTypeCode());
+                engineTable.getItems().add(eng);
+            }else if(comp.getCategory().equals("Electronics")){
+                ElectronicT e = new ElectronicT(comp.getTypeCode());
+                electronicTable.getItems().add(e);
+            }else if(comp.getCategory().equals("Wheel")){
+                WheelT w = new WheelT(comp.getTypeCode());
+                wheelTable.getItems().add(w);
+            }
+        }
+    }
 }

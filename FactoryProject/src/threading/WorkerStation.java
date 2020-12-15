@@ -56,10 +56,10 @@ public class WorkerStation<T extends Component> {
                     this.currentProgress = 0;
                     try {
                         long sleepTime = 6000; //TODO: dynamic sleep time, using typeToProduce
-                        for (int i = 0; i < sleepTime; i += sleepTime / 10) {
+                        for (int i = 0; i < sleepTime; i += sleepTime / 30) {
                             this.firePropertyChange("progress", this.currentProgress, i/(double)sleepTime);
                             this.currentProgress = i;
-                            Thread.sleep(sleepTime/10); // simulate production time
+                            Thread.sleep(sleepTime/30); // simulate production time
                         }
                     } catch (InterruptedException e) {
                     }
