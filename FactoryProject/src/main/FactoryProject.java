@@ -69,13 +69,13 @@ public class FactoryProject extends Application {
         List<CarRequirement> requirements;
 
         try {
-            possibleBodies = JsonUtils.getComponents(new File("src/resources/bodies.json"), Body.class);
-            possibleElectronics = JsonUtils.getComponents(new File("src/resources/electronics.json"), Electronics.class);
-            possibleEngines = JsonUtils.getComponents(new File("src/resources/engines.json"), Engine.class);
-            possibleWheels = JsonUtils.getComponents(new File("src/resources/wheels.json"), Wheel.class);
-            requirements = JsonUtils.getCarRequirements(new File("src/resources/carrequirements.json"));
+            possibleBodies = JsonUtils.getComponents("resources/bodies.json", Body.class);
+            possibleElectronics = JsonUtils.getComponents("resources/electronics.json", Electronics.class);
+            possibleEngines = JsonUtils.getComponents("resources/engines.json", Engine.class);
+            possibleWheels = JsonUtils.getComponents("resources/wheels.json", Wheel.class);
+            requirements = JsonUtils.getCarRequirements("resources/carrequirements.json");
         } catch (FileNotFoundException e) {
-            System.out.println("Could not find json files, with working directory: " +
+            System.err.println("Could not find json files, with working directory: " +
                     System.getProperty("user.dir"));
             e.printStackTrace();
             return;
