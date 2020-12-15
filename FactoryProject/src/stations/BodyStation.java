@@ -13,4 +13,9 @@ public class BodyStation extends Station<Body> {
         super(possibleTypes);
     }
 
+    @Override
+    public long getProductionTime(Body type) {
+        return type.getBodySize() * 2000 + type.getNumberOfDoors() * 500;
+    }
+
 }

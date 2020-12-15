@@ -3,7 +3,6 @@ package stations;
 import components.Engine;
 
 import java.util.List;
-import javafx.scene.control.ProgressBar;
 
 
 public class EngineStation extends Station<Engine>{
@@ -13,5 +12,10 @@ public class EngineStation extends Station<Engine>{
 
     public EngineStation(List<Engine> possibleTypes) {
         super(possibleTypes);
+    }
+
+    @Override
+    public long getProductionTime(Engine type) {
+        return type.getCylinderCapacity() + type.getNumberOfCylinders() * 200;
     }
 }

@@ -19,6 +19,8 @@ public abstract class Station<T extends Component> {
         this.possibleTypes = new ArrayList<>(possibleTypes);
     }
 
+    public abstract long getProductionTime(T type);
+
     public void addType(T type) {
         possibleTypes.add(type);
     }

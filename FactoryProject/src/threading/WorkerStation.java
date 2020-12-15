@@ -51,11 +51,11 @@ public class WorkerStation<T extends Component> {
                 cancelled = false;
                 createdComponents.clear();
                 while (!cancelled) {
-                    T result = station.getCurrentType();
+                    T type = station.getCurrentType();
                     this.firePropertyChange("progress", this.currentProgress, 0.0);
                     this.currentProgress = 0;
                     try {
-                        long sleepTime = 6000; //TODO: dynamic sleep time, using typeToProduce
+                        long sleepTime = station.getProductionTime(type);
                         for (int i = 0; i < sleepTime; i += sleepTime / 30) {
                             this.firePropertyChange("progress", this.currentProgress, i/(double)sleepTime);
                             this.currentProgress = i;
@@ -65,7 +65,7 @@ public class WorkerStation<T extends Component> {
                         }
                     } catch (InterruptedException e) {
                     }
-                    createdComponents.add(result);
+                    createdComponents.add(type);
                 }
                 return createdComponents;
             }
