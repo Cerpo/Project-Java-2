@@ -253,6 +253,13 @@ public class FXMLDocumentController implements Initializable {
     
 
     public void startCar(ActionEvent event) throws InterruptedException {
+        int i = 0;
+        for (String name : carBuilder.getPossibleTypes()) {
+            if (name.equals(carList.getValue())) {
+                carBuilder.setCurrentCarRequirement(i);
+            }
+            i++;
+        }
         if(carBuilder.build(storage)){
             TypeNameModel car = new TypeNameModel(carList.getValue());
             carTable.getItems().add(car);

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="824.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="824.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.FXMLDocumentController">
     <children>
         <Pane prefHeight="824.0" prefWidth="939.0">
             <children>
@@ -14,12 +11,12 @@
                 <Button fx:id="wheelBtn" layoutX="790.0" layoutY="14.0" mnemonicParsing="false" onAction="#startWheel" prefHeight="25.0" prefWidth="77.0" text="Start" />
                 <Button fx:id="electronicBtn" layoutX="225.0" layoutY="295.0" mnemonicParsing="false" onAction="#startElectronic" prefHeight="25.0" prefWidth="77.0" text="Start" />
                 <Button fx:id="bodyBtn" layoutX="796.0" layoutY="295.0" mnemonicParsing="false" onAction="#startBody" prefHeight="25.0" prefWidth="77.0" text="Start" />
-                <Button fx:id="carBtn" layoutX="500.0" layoutY="566.0" mnemonicParsing="false" onAction="#startCar" prefHeight="25.0" prefWidth="77.0" text="Start" />
+                <Button fx:id="carBtn" layoutX="500.0" layoutY="566.0" mnemonicParsing="false" onAction="#startCar" prefHeight="25.0" prefWidth="77.0" text="Build" />
                 <ComboBox fx:id="engineList" layoutX="62.0" layoutY="14.0" prefWidth="150.0" promptText="Choose an Engine" />
                 <ComboBox fx:id="electronicList" layoutX="62.0" layoutY="295.0" prefWidth="150.0" promptText="Choose an Electronic" />
                 <ComboBox fx:id="wheelList" layoutX="627.0" layoutY="14.0" prefWidth="150.0" promptText="Choose a Wheel" />
                 <ComboBox fx:id="bodyList" layoutX="627.0" layoutY="295.0" prefWidth="150.0" promptText="Choose a Body" />
-                <ComboBox fx:id="carList" layoutX="334.0" layoutY="566.0" prefWidth="150.0" promptText="Chose a Car" />
+                <ComboBox fx:id="carList" layoutX="334.0" layoutY="566.0" prefWidth="150.0" promptText="Choose a Car" />
                 <ProgressBar fx:id="enginePB" layoutX="62.0" layoutY="52.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
                 <ProgressBar fx:id="electronicPB" layoutX="62.0" layoutY="334.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
                 <ProgressBar fx:id="wheelPB" layoutX="627.0" layoutY="52.0" prefHeight="18.0" prefWidth="246.0" progress="0.0" />
