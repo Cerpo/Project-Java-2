@@ -226,7 +226,7 @@ public class FXMLDocumentController implements Initializable {
     
     boolean startEl = true;
     public void startElectronic(ActionEvent event) throws InterruptedException {
-              if (startEl) {
+      if (startEl) {
             int i = 0;
             for (String name : electronicList.getItems()) {
                 if (name.equals(electronicList.getValue())) {

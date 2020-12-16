@@ -1,17 +1,17 @@
 [{
-	"typeCode": "Ford",
+	"typeCode": "generic",
 	"hasClimate": true,
 	"hasGps": false,
 	"lampType": "led"
 },
 {
-	"typeCode": "Ferrari",
+	"typeCode": "sport",
 	"hasClimate": true,
 	"hasGps": true,
 	"lampType": "Xenon"
 },
 {
-	"typeCode": "Opel",
+	"typeCode": "budget",
 	"hasClimate": false,
 	"hasGps": false,
 	"lampType": "Halogen"

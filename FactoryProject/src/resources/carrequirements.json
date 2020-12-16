@@ -2,14 +2,14 @@
   {
     "carName": "Ford",
     "requiredBodyType": "Ford",
-    "requiredElectronicsType": "Ford",
+    "requiredElectronicsType": "budget",
     "requiredEngineType": "Ford",
     "requiredWheelType": "Michelin"
   },
   {
-    "carName": "Tesla",
-    "requiredBodyType": "Opel",
-    "requiredElectronicsType": "Ferrari",
+    "carName": "Ferrari",
+    "requiredBodyType": "Ferrari",
+    "requiredElectronicsType": "sport",
     "requiredEngineType": "Ferrari",
     "requiredWheelType": "Hankook"
   }
