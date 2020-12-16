@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 public class FactoryProject extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(new URL("file:src/fxml/FXMLDocument.fxml"));
-        
+        Parent root = FXMLLoader.load(getClass().getResource("../fxml/FXMLDocument.fxml"));
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
