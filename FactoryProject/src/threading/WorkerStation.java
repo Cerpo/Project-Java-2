@@ -3,6 +3,9 @@ package threading;
 import components.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import stations.Station;
 
 import javax.swing.*;
@@ -12,6 +15,8 @@ import java.util.concurrent.ExecutionException;
 import javafx.scene.control.ProgressBar;
 
 public class WorkerStation<T extends Component> {
+
+    private static final Logger logger = LogManager.getLogger("WorkerStation");
 
     private Station<T> station;
     private ArrayList<T> createdComponents;
@@ -52,6 +57,7 @@ public class WorkerStation<T extends Component> {
                 createdComponents.clear();
                 while (!cancelled) {
                     T type = station.getCurrentType();
+                    logger.info("Starting new " + type.getCategory() + " production, with type code: " + type.getTypeCode());
                     this.firePropertyChange("progress", this.currentProgress, 0.0);
                     this.currentProgress = 0;
                     try {
@@ -66,6 +72,7 @@ public class WorkerStation<T extends Component> {
                     } catch (InterruptedException ignored) {
                     }
                     createdComponents.add(type);
+                    logger.info("Created new " + type.getCategory() + ", with type code: " + type.getTypeCode());
                 }
                 return createdComponents;
             }

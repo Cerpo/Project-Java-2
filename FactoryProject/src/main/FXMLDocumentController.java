@@ -23,6 +23,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.model.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import stations.BodyStation;
 import stations.ElectronicsStation;
 import stations.EngineStation;
@@ -32,6 +34,8 @@ import threading.WorkerStation;
 import util.JsonUtils;
 
 public class FXMLDocumentController implements Initializable {
+
+    private static final Logger logger = LogManager.getLogger("FXMLDocumentController");
 
     private Label label;
     @FXML
@@ -254,9 +258,11 @@ public class FXMLDocumentController implements Initializable {
             carTable.getItems().add(car);
             carLabel.setVisible(false);
             updateTable();
+            logger.info("Created new car, with name: " + carList.getValue());
         }else{
             carLabel.setText("Some of the requirements are missing!");
             carLabel.setVisible(true);
+            logger.warn("Missing components, could not create car with name: " + carList.getValue());
         }
     }
 

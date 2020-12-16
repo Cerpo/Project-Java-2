@@ -9,6 +9,7 @@
 .settings/org.eclipse.wst.jsdt.ui.superType.name
 /FactoryProject/build/
 FactoryProject/dist/
+FactoryProject/logs/
 FactoryProject/src/tests/
 # IntelliJ
 .idea/
